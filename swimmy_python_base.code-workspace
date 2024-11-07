@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"name": "Google Drive",
+			"path": "%DRIVE_PATH%"
+		},
+		{
+			"name": "今日のワークスペース",
+			"path": "%WORKSPACE_PATH%"
+		}
+	],
+	"settings": {
+		"files.readonlyFromPermissions": true,
+		"files.readonlyInclude": {
+			"%DRIVE_PARENT_PATH%\\*": true,
+			"%DRIVE_PATH%\\*": true,
+			"%DRIVE_PATH%\\**\\*": true
+		},
+		"files.exclude": {
+			"__pycache__": true,
+			".mypy_cache": true,
+			".vscode": true
+		}
+	}
+}

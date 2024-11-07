@@ -1,0 +1,8 @@
+__pycache__
+.mypy_cache
+.env
+workspace
+dist
+build
+*.spec
+*.exe

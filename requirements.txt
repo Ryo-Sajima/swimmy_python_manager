@@ -1,0 +1,4 @@
+pyinstaller
+pyglet
+pygetwindow
+Send2Trash
