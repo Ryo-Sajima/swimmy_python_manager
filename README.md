@@ -8,6 +8,7 @@
 
 - Windows 11
 - Python 3.13
+- Visual Studio Code 1.95.1
 
 ## 準備
 
