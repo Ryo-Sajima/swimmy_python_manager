@@ -44,7 +44,7 @@ class FolderLister:
         """
         try:
             with os.scandir(self.directory) as entries:
-                return [entry.name for entry in entries if entry.is_dir()]
+                return sorted([entry.name for entry in entries if entry.is_dir()])
         except FileNotFoundError:
             tk_messagebox.showerror("エラー", f"ディレクトリ {self.directory} が見つかりません。")
             return []

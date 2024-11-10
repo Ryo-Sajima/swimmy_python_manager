@@ -1,16 +1,16 @@
 import configparser
 import glob
 import os
-import pyglet
 import tkinter as tk
+import tkinter.messagebox as tk_messagebox
 import typing
 from tkinter import ttk
-import tkinter.messagebox as tk_messagebox
+
+import pyglet
+from send2trash import send2trash
 
 from path_resolver import resolve_path
-from send2trash import send2trash
 from upload_manager import UploadManager
-
 
 CONFIG_FILE_PATH = "config.ini"
 
@@ -207,8 +207,6 @@ class FileUploadBrowserApp:
         self.file_list_frame = ttk.Frame(self.root)
         self.file_list_frame.grid(row=1, column=0, sticky="nsew", padx=10, pady=(0, 10))
 
-        self._populate_filtered_file_list(file_list_font)
-
         # メッセージ表示エリア
         self.message_label = tk.Label(self.root, text="", font=bizter_font, fg="green")
         self.message_label.grid(row=2, column=0, pady=(0, 10))
@@ -228,6 +226,8 @@ class FileUploadBrowserApp:
         # 閉じるボタン
         self.close_button = tk.Button(button_frame, text="閉じる", command=self._on_close, width=15)
         self.close_button.pack(side="left", padx=5)
+
+        self._populate_filtered_file_list(file_list_font)
 
     def _populate_filtered_file_list(self, font: typing.Tuple[str, int]) -> None:
         """

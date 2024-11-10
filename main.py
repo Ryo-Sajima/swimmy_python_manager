@@ -27,7 +27,7 @@ def main() -> None:
         return  # 選択されないので終了
 
     workspace_base_path_resolved = resolve_path(main_config["WORKSPACE_BASE_PATH"])
-    workspace_path = os.path.join(workspace_base_path_resolved, selected_folder)
+    workspace_path = os.path.join(workspace_base_path_resolved, selected_folder.replace("　", "_"))
 
     if os.path.isdir(workspace_path):
         restore_confirm = tk_messagebox.askquestion("ワークスペースの警告", "以前のワークスペースが残っています。復元しますか？")

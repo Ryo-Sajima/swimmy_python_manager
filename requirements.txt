@@ -1,4 +1,5 @@
 pyinstaller
 pyglet
 pygetwindow
+pywin32
 Send2Trash

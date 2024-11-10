@@ -6,3 +6,6 @@ dist
 build
 *.spec
 *.exe
+*.code-workspace
+
+!swimmy_python_base.code-workspace
