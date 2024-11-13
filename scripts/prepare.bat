@@ -18,7 +18,7 @@ python -m pip install -U pip
 pip install wheel setuptools
 
 :: requirements.txt に記載されているライブラリをインストール
-pip install -r requirements.txt
+pip install -r ..\requirements.txt
 
 echo 任意のキーを押して終了します...
 pause >nul

@@ -6,7 +6,7 @@ import tkinter.messagebox as tk_messagebox
 
 import pyglet
 
-from path_resolver import resolve_path
+from .path_resolver import resolve_path
 
 CONFIG_FILE_PATH = "config.ini"
 

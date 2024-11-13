@@ -19,6 +19,7 @@
 		"files.exclude": {
 			"__pycache__": true,
 			".mypy_cache": true,
+			"desktop.ini": true,
 			".vscode": true
 		}
 	}

@@ -1,7 +1,9 @@
 @echo off
 
+cd ..
+
 rem pyinstallerでPythonファイルをexe化
-pyinstaller --onefile --icon=icon.ico --noconsole --clean main.py
+pyinstaller --onefile --icon=resources\icon.ico --noconsole --clean main.py --add-data="resources;resources"
 
 rem main.exe をカレントディレクトリに移動
 move dist\main.exe main.exe

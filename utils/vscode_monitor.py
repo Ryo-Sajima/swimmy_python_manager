@@ -1,9 +1,8 @@
 import configparser
-import time
 
 import pygetwindow as gw
 
-from path_resolver import resolve_path
+from .path_resolver import resolve_path
 
 CONFIG_FILE_PATH = "config.ini"
 
@@ -22,11 +21,3 @@ class VSCodeMonitor:
             if "Visual Studio Code" in window:
                 return True
         return False
-
-    @staticmethod
-    def monitor() -> None:
-        """VSCodeの実行状態を監視し、終了後に通知"""
-        while True:
-            if not VSCodeMonitor.is_vscode_running():
-                break
-            time.sleep(vscode_monitor_config.getint("MONITOR_INTERVAL"))

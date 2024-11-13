@@ -7,10 +7,9 @@ import typing
 from tkinter import ttk
 
 import pyglet
-from send2trash import send2trash
 
-from path_resolver import resolve_path
-from upload_manager import UploadManager
+from .path_resolver import resolve_path
+from .upload_manager import UploadManager
 
 CONFIG_FILE_PATH = "config.ini"
 
@@ -311,7 +310,6 @@ class FileUploadBrowserApp:
             if not delete_confirmed:
                 return
         self.check_vars = {}
-        send2trash(self.file_manager.directory_path)
         self.root.destroy()
 
     def _on_upload(self):
