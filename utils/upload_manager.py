@@ -187,6 +187,9 @@ class UploadManager:
         self._progress = 0
         self._file_statuses.clear()
         self._src_files = file_list  # コピー元ファイルのリストを格納
+        self._total_size = 0  # 全ファイルの総バイトサイズ
+        self._completed_size = 0  # 完了したファイルのバイトサイズ
+
         existing_files = [src_file for src_file in self._src_files if os.path.isfile(self._get_new_path(src_file))]
 
         # 上書き確認と既存ファイル削除
@@ -207,10 +210,18 @@ class UploadManager:
             os.makedirs(new_dir_path, exist_ok=True)
             copied_file_path = shutil.copy2(src_file, new_path)
 
+            # ファイルサイズを取得し、0バイトの場合は1バイトと見なす
+            file_size = max(1, os.path.getsize(src_file))
+            self._total_size += file_size
+
             # オーバーレイアイコンインデックスを取得し、ファイル状態を初期化
             initial_overlay_index = self._overlay_icon_fetcher.get_overlay_index(copied_file_path)
             if initial_overlay_index is not None:
-                self._file_statuses[copied_file_path] = {"initial_overlay": initial_overlay_index, "changed": False}
+                self._file_statuses[copied_file_path] = {
+                    "initial_overlay": initial_overlay_index,
+                    "changed": False,
+                    "size": file_size,
+                }
             else:
                 print(f"Failed to retrieve overlay index for {copied_file_path}")
 
@@ -224,8 +235,7 @@ class UploadManager:
         int
             現在の進捗状況（0から100の範囲）。
         """
-        completed_files = 0
-        total_files = len(self._file_statuses)
+        self._completed_size = 0
 
         for file_path, status in self._file_statuses.items():
             current_overlay = self._overlay_icon_fetcher.get_overlay_index(file_path)
@@ -234,10 +244,10 @@ class UploadManager:
                 status["changed"] = True
 
             if status["changed"]:
-                completed_files += 1
+                self._completed_size += status["size"]
 
-        if total_files > 0:
-            self._progress = int((completed_files / total_files) * 100)
+        if self._total_size > 0:
+            self._progress = int((self._completed_size / self._total_size) * 100)
 
         return self._progress
 

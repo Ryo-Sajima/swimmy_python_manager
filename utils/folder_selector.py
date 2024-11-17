@@ -15,9 +15,6 @@ config.read(resolve_path(CONFIG_FILE_PATH), "UTF-8")
 folder_selector_config = config["FOLDER_SELECTOR"]
 
 
-# 定数設定
-
-
 class FolderLister:
     """指定されたディレクトリ内のフォルダーをリストするクラス
 
@@ -73,7 +70,7 @@ class FolderSelectorUI:
         self.folder_lister = folder_lister
         self.selected_folder = None
 
-        pyglet.options["win32_gdi_font"] = True
+        pyglet.options.win32_gdi_font = True
         font_path = resolve_path(folder_selector_config["BIZTER_FONT_FILE"])
         pyglet.font.add_file(font_path)
         self.font = tk_font.Font(family=folder_selector_config["BIZTER_FONT_FAMILY"], size=folder_selector_config.getint("BIZTER_FONT_SIZE"))
@@ -143,7 +140,7 @@ class FolderSelectorUI:
     def on_folder_selected(self, event) -> None:
         """Listboxからファイルが選択されたときの処理"""
         self.selected_folder = self._get_selected_folder()
-        if self.selected_folder:
+        if self.selected_folder is not None:
             self.root.after(100, self.root.destroy)  # ウィンドウを閉じる
 
     def _get_selected_folder(self) -> str | None:

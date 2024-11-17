@@ -1,14 +1,4 @@
-import configparser
-
 import pygetwindow as gw
-
-from .path_resolver import resolve_path
-
-CONFIG_FILE_PATH = "config.ini"
-
-config = configparser.ConfigParser()
-config.read(resolve_path(CONFIG_FILE_PATH), "UTF-8")
-vscode_monitor_config = config["VSCODE_MONITOR"]
 
 
 class VSCodeMonitor:

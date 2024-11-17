@@ -1,12 +1,12 @@
 {
 	"folders": [
 		{
-			"name": "Google Drive",
-			"path": "%DRIVE_PATH%"
-		},
-		{
 			"name": "今日のワークスペース",
 			"path": "%WORKSPACE_PATH%"
+		},
+		{
+			"name": "Google Drive",
+			"path": "%DRIVE_PATH%"
 		}
 	],
 	"settings": {
@@ -21,6 +21,11 @@
 			".mypy_cache": true,
 			"desktop.ini": true,
 			".vscode": true
-		}
+		},
+		"mypy-type-checker.ignorePatterns": [
+			"%DRIVE_PARENT_PATH%\\*",
+			"%DRIVE_PATH%\\*",
+			"%DRIVE_PATH%\\**\\*"
+		]
 	}
 }

@@ -9,3 +9,4 @@ build
 *.code-workspace
 
 !swimmy_python_base.code-workspace
+!main.exe

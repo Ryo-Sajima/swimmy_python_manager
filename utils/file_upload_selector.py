@@ -154,7 +154,7 @@ class FileUploadBrowserApp:
         self.root = root
         self.file_manager = file_manager
 
-        self.check_vars = {}
+        self.check_vars: dict[str, tk.BooleanVar] = {}
         self._configure_window()
         self._create_widgets()
 
@@ -176,7 +176,7 @@ class FileUploadBrowserApp:
 
         self._setup_check_change_event()
         self.upload_manager = upload_manager
-        self.uploaded_files = set()  # アップロード済みのファイルを保持するセット
+        self.uploaded_files: set[str] = set()  # アップロード済みのファイルを保持するセット
 
     def _configure_window(self) -> None:
         """ウィンドウの基本設定を行う。"""
@@ -194,7 +194,7 @@ class FileUploadBrowserApp:
         """ウィジェットを作成し、配置を行う。"""
 
         # フォント設定
-        pyglet.options["win32_gdi_font"] = True
+        pyglet.options.win32_gdi_font = True
         bizter_font_path = resolve_path(file_upload_selector_config["BIZTER_FONT_FILE"])
         pyglet.font.add_file(bizter_font_path)
 
